@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="Practica1Html5PythonFS/img/icons8-preguntas-96.png">
+    <title>Foro</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th, td {
+            padding: 15px;
+            border: 1px solid #4d4949;
+            text-align: center;
+        }
+
+        th {
+            background-color: #510c66;
+            color: #f8f2ef;
+        }
+
+        td {
+            background-color: #FFFFFF;
+        }
+
+        #videoCell {
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        h3 {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+<h2>FORO DE PREGUNTAS Y RESPUESTAS</h2>
+
+<table>
+    <tr>
+        <th colspan="3" style="background-color: #590da0; color: #faf9f9; text-align: center; vertical-align: middle;"> 
+            <h1 id="preguntaTitulo" style=" color: #f8f5f5; text-align: Left; vertical-align: middle;">Haga su pregunta</h1>
+        </th>
+    </tr>
+    <tr>
+        <td colspan="3">
+            <div id="ImageCell" style="display: flex; align-items: left; justify-content: left;"> <h2>FORO</h2>
+                <iframe width="150" height="150" src="Practica1Html5PythonFS/img/icons8-preguntas-64.png" frameborder="0" allowfullscreen></iframe>
+                <div style="margin-left: 10px; text-align: left;">
+                    <h4>Realiza tus preguntas aquí:</h4>
+                    <p id="preguntatexto" style="margin: 5px 0;"></p>
+                    <textarea id="preguntaInput" rows="3" placeholder="Al finalizar tu pregunta presiona Enter"></textarea>
+                </div>
+            </div>
+        </td>
+    </tr>
+    <script>
+        document.getElementById('preguntaInput').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                var pregunta = this.value.trim();
+                
+                // Colocar la pregunta arriba del cuadro de la fila 2
+                document.getElementById('preguntatexto').textContent = pregunta;
+
+                // Limpiar el área de texto
+                this.value = '';
+            }
+        });
+    </script>
+    <tr>
+        <th colspan="3" style="background-color: #590da0; color: #faf9f9; text-align: left; vertical-align: bottom;">Respuestas:
+            <p id="respuestaTexto" style="background-color: #590da0; color: #faf9f9; text-align: left; vertical-align: bottom;"> 
+            </p>
+            <textarea id="respuestaInput" rows="3" placeholder="Escribe tu respuesta y presiona Enter"></textarea>
+        </th>
+    </tr>
+
+    <script>
+        document.getElementById('respuestaInput').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                var respuesta = this.value.trim();
+                
+                // Obtener la respuesta anterior
+                var respuestaAnterior = document.getElementById('respuestaTexto').textContent;
+
+                // Agregar la nueva respuesta encima de la anterior
+                var nuevaRespuesta = respuestaAnterior + '<br>' + respuesta;
+                document.getElementById('respuestaTexto').innerHTML = nuevaRespuesta;
+
+                // Limpiar el área de texto
+                this.value = '';
+            }
+        });
+    </script>
+</table>
+
+</body>
+</html>
